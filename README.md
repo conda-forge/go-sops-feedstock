@@ -5,7 +5,7 @@ Home: https://github.com/mozilla/sops
 
 Package license: MPL-2.0
 
-Feedstock license: BSD 3-Clause
+Feedstock license: BSD-3-Clause
 
 Summary: Simple and flexible tool for managing secrets
 
