@@ -5,7 +5,7 @@ Home: https://github.com/mozilla/sops
 
 Package license: MPL-2.0
 
-Feedstock license: BSD-3-Clause
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/go-sops-feedstock/blob/master/LICENSE.txt)
 
 Summary: Simple and flexible tool for managing secrets
 
@@ -146,7 +146,4 @@ Feedstock Maintainers
 =====================
 
 * [@xhochy](https://github.com/xhochy/)
-
-
-<!-- dummy commit to enable rerendering -->
 
