@@ -18,12 +18,14 @@ build:
   script:
     - pushd {{ pkg_src }}
     - make install
+    - go-licenses save "github.com/mozilla/sops" --save_path="go_licenses"
 
 requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('go') }} >=1.13      # [linux] # seg faults occure for cgo
     - {{ compiler('go-cgo') }} >=1.13  # [not linux]
+    - go-licenses
     - make
 
 test:
@@ -36,7 +38,9 @@ about:
   home: https://github.com/mozilla/sops
   license: MPL-2.0
   license_family: MOZILLA
-  license_file: {{ pkg_src }}/LICENSE
+  license_file: 
+    - {{ pkg_src }}/LICENSE
+    - go_licenses/
   summary: Simple and flexible tool for managing secrets
   description: |
     sops is an editor of encrypted files that supports YAML, JSON, ENV, INI
