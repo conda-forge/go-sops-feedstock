@@ -15,7 +15,7 @@ source:
 build:
   number: 0
   script:
-    - go build -v -o $PREFIX/bin/sops  # [not win]
+    - go build -v -o $PREFIX/bin/sops go.mozilla.org/sops/v3/cmd/sops   # [not win]
     - go install -v .
 
 requirements:
