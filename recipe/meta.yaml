@@ -1,5 +1,5 @@
 {% set import_path = "github.com/mozilla/sops" %}
-{% set version = "3.7.2" %}
+{% set version = "3.7.3" %}
 
 {% set name = import_path.split('/')[-1] %}
 {% set pkg_src = ('src/'+import_path).replace("/", os.sep) %}
@@ -9,15 +9,14 @@ package:
   version: {{ version }}
 
 source:
-  - folder: {{ pkg_src }}
-    url: https://{{ import_path }}/archive/v{{ version }}.tar.gz
-    sha256: 905d0d85e6f3a36eb0586bae5c1bf501445841303e597136f69a33040f5123b2
+  url: https://{{ import_path }}/archive/v{{ version }}.tar.gz
+  sha256: 0e563f0c01c011ba52dd38602ac3ab0d4378f01edfa83063a00102587410ac38
 
 build:
   number: 0
   script:
-    - pushd {{ pkg_src }}
-    - make install
+    - go build -v -o $PREFIX/bin/sops go.mozilla.org/sops/v3/cmd/sops   # [not win]
+    - go build -v -o %LIBRARY_PREFIX%/bin/sops.exe go.mozilla.org/sops/v3/cmd/sops   # [win]
 
 requirements:
   build:
@@ -36,7 +35,7 @@ about:
   home: https://github.com/mozilla/sops
   license: MPL-2.0
   license_family: MOZILLA
-  license_file: {{ pkg_src }}/LICENSE
+  license_file: LICENSE
   summary: Simple and flexible tool for managing secrets
   description: |
     sops is an editor of encrypted files that supports YAML, JSON, ENV, INI
