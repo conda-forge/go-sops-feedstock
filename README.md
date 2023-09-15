@@ -1,11 +1,11 @@
-About go-sops
-=============
+About go-sops-feedstock
+=======================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/go-sops-feedstock/blob/main/LICENSE.txt)
 
 Home: https://github.com/mozilla/sops
 
 Package license: MPL-2.0
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/go-sops-feedstock/blob/main/LICENSE.txt)
 
 Summary: Simple and flexible tool for managing secrets
 
