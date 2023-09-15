@@ -1,5 +1,5 @@
 {% set import_path = "github.com/mozilla/sops" %}
-{% set version = "3.7.3" %}
+{% set version = "3.8.0" %}
 
 {% set name = import_path.split('/')[-1] %}
 {% set pkg_src = ('src/'+import_path).replace("/", os.sep) %}
@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://{{ import_path }}/archive/v{{ version }}.tar.gz
-  sha256: 0e563f0c01c011ba52dd38602ac3ab0d4378f01edfa83063a00102587410ac38
+  sha256: 14fa25f2d6177c5444934612398426a8de3caf59348eae8cc228291cf750288a
 
 build:
   number: 0
