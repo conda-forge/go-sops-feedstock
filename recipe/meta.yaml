@@ -1,5 +1,5 @@
 {% set import_path = "github.com/getsops/sops" %}
-{% set version = "3.8.1" %}
+{% set version = "3.9.0" %}
 
 {% set name = import_path.split('/')[-1] %}
 {% set pkg_src = ('src/'+import_path).replace("/", os.sep) %}
@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://{{ import_path }}/archive/v{{ version }}.tar.gz
-  sha256: 5ca70fb4f96797d09012c705a5bb935835896de7bcd063b98d498912b0e645a0
+  sha256: eda01428a4178903b2d9552940fe441d93fab7b4582cd3f5fee7b6b73404d8cb
 
 build:
   number: 0
@@ -21,6 +21,7 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
     - {{ compiler('go') }} >=1.13      # [linux] # seg faults occure for cgo
     - {{ compiler('go-cgo') }} >=1.13  # [not linux]
     - make
