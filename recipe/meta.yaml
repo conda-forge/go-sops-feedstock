@@ -9,6 +9,8 @@ package:
   version: {{ version }}
 
 source:
+  patches: 
+    - 0001-update-minimal-go-version.patch
   url: https://{{ import_path }}/archive/v{{ version }}.tar.gz
   sha256: 8d4cbb30afacc88b5b55d1f7c9b22c82e2dde68905dc8e797a52aafe2c96f466
 
@@ -22,8 +24,8 @@ requirements:
   build:
     - {{ compiler('c') }}
     - {{ stdlib("c") }}
-    - {{ compiler('go') }} >=1.13      # [linux] # seg faults occure for cgo
-    - {{ compiler('go-cgo') }} >=1.13  # [not linux]
+    - {{ compiler('go') }} >=1.22.7      # [linux]
+    - {{ compiler('go-cgo') }} >=1.22.7  # [not linux]
     - make
 
 test:
