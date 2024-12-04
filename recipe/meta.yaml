@@ -1,32 +1,31 @@
-{% set import_path = "github.com/getsops/sops" %}
+{% set name = "sops" %}
 {% set version = "3.9.2" %}
-
-{% set name = import_path.split('/')[-1] %}
-{% set pkg_src = ('src/'+import_path).replace("/", os.sep) %}
 
 package:
   name: go-{{ name|lower }}
   version: {{ version }}
 
 source:
-  patches: 
-    - 0001-update-minimal-go-version.patch
-  url: https://{{ import_path }}/archive/v{{ version }}.tar.gz
-  sha256: 8d4cbb30afacc88b5b55d1f7c9b22c82e2dde68905dc8e797a52aafe2c96f466
+  - folder: src
+    url:  https://github.com/getsops/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
+    sha256: 8d4cbb30afacc88b5b55d1f7c9b22c82e2dde68905dc8e797a52aafe2c96f466
+    patches:
+      - 0001-update-minimal-go-version.patch
 
 build:
-  number: 0
+  number: 1
   script:
-    - go build -v -o $PREFIX/bin/sops github.com/getsops/sops/v3/cmd/sops   # [not win]
-    - go build -v -o %LIBRARY_PREFIX%/bin/sops.exe github.com/getsops/sops/v3/cmd/sops   # [win]
+    - cd src
+    - go-licenses save . --save_path ../library_licenses
+    - go build -v -o $PREFIX/bin/sops ./cmd/sops   # [not win]
+    - go build -v -o %LIBRARY_BIN%\sops.exe .\cmd\sops   # [win]
+    # Clear out cache to avoid file not removable warnings
+    - chmod -R u+w $(go env GOPATH) && rm -r $(go env GOPATH)  # [unix]
 
 requirements:
   build:
-    - {{ compiler('c') }}
-    - {{ stdlib("c") }}
-    - {{ compiler('go') }} >=1.22.7      # [linux]
-    - {{ compiler('go-cgo') }} >=1.22.7  # [not linux]
-    - make
+    - {{ compiler('go-nocgo') }} >=1.22.7
+    - go-licenses
 
 test:
   commands:
@@ -35,15 +34,14 @@ test:
     - sops --help
 
 about:
-  home: https://github.com/mozilla/sops
+  home: https://github.com/getsops/sops/
   license: MPL-2.0
-  license_family: MOZILLA
-  license_file: LICENSE
-  summary: Simple and flexible tool for managing secrets
+  license_file:
+   - src/LICENSE
+   - library_licenses/
+  summary: sops manages JSON, YAML and BINARY documents to be encrypted or decrypted.
   description: |
-    sops is an editor of encrypted files that supports YAML, JSON, ENV, INI
-    and BINARY formats and encrypts with AWS KMS, GCP KMS, Azure Key Vault
-    and PGP.
+    SOPS is an editor of encrypted files that supports YAML, JSON, ENV, INI and BINARY formats and encrypts with AWS KMS, GCP KMS, Azure Key Vault, age, and PGP.
 
 extra:
   recipe-maintainers:
