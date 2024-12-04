@@ -8,3 +8,5 @@ github:
 test: native_and_emulated
 conda_build:
   pkg_format: '2'
+bot:
+  automerge: true
