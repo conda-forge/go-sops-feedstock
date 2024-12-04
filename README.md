@@ -3,15 +3,13 @@ About go-sops-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/go-sops-feedstock/blob/main/LICENSE.txt)
 
-Home: https://github.com/mozilla/sops
+Home: https://github.com/getsops/sops/
 
 Package license: MPL-2.0
 
-Summary: Simple and flexible tool for managing secrets
+Summary: sops manages JSON, YAML and BINARY documents to be encrypted or decrypted.
 
-sops is an editor of encrypted files that supports YAML, JSON, ENV, INI
-and BINARY formats and encrypts with AWS KMS, GCP KMS, Azure Key Vault
-and PGP.
+SOPS is an editor of encrypted files that supports YAML, JSON, ENV, INI and BINARY formats and encrypts with AWS KMS, GCP KMS, Azure Key Vault, age, and PGP.
 
 
 Current build status
