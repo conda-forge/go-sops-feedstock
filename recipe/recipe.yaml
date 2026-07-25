@@ -1,6 +1,6 @@
 context:
   name: sops
-  version: "3.13.2"
+  version: "3.13.3"
 
 package:
   name: go-${{ name|lower }}
@@ -9,7 +9,7 @@ package:
 source:
   - target_directory: src
     url: https://github.com/getsops/${{ name }}/archive/refs/tags/v${{ version }}.tar.gz
-    sha256: 79560b53814e20031d094a293d6c169314eaaf97efd6e95a6d765e61e881db2c
+    sha256: 49811c5ed80f6b4d4e98cef98e3f7378406aa692fd773dfb72ad1b4dfb940448
 
 build:
   number: 0
